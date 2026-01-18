@@ -1,4 +1,4 @@
-# WinPicker.nvim
+# WinPick.nvim
 
 A Neovim plugin for quickly picking windows to focus by pressing letter labels displayed on them.
 
@@ -8,9 +8,9 @@ A Neovim plugin for quickly picking windows to focus by pressing letter labels d
 
 ```lua
 {
-  'pirey/winpicker.nvim',
+  'pirey/winpick.nvim',
   config = function()
-    require('winpicker').setup()
+    require('winpick').setup()
   end
 }
 ```
@@ -18,7 +18,7 @@ A Neovim plugin for quickly picking windows to focus by pressing letter labels d
 ### Using vim.pack
 
 ```lua
-vim.pack.add({ 'https://github.com/pirey/winpicker.nvim' })
+vim.pack.add({ 'https://github.com/pirey/winpick.nvim' })
 ```
 
 ## Requirements
@@ -30,13 +30,13 @@ vim.pack.add({ 'https://github.com/pirey/winpicker.nvim' })
 Call the `pick()` function to start window picking:
 
 ```lua
-require('winpicker').pick()
+require('winpick').pick()
 ```
 
 You can set up a keymap for easy access:
 
 ```lua
-vim.keymap.set('n', '<c-w>p', require('winpicker').pick, { desc = 'Pick window' })
+vim.keymap.set('n', '<c-w>p', require('winpick').pick, { desc = 'Pick window' })
 ```
 
 When activated, letters will appear on each window. Press the corresponding letter to focus that window, or press the cancel key to exit.
@@ -46,7 +46,7 @@ When activated, letters will appear on each window. Press the corresponding lett
 The plugin uses these default options, which you can override by passing options to the `setup()` function:
 
 ```lua
-require('winpicker').setup({
+require('winpick').setup({
   position = 'center',
   cancel_key = '<esc>',
   letters = { 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l' },

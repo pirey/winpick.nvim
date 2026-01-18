@@ -1,8 +1,8 @@
--- WinPicker module: Pick window to focus by letter
+-- WinPick module: Pick window to focus by letter
 
 local M = {}
 
----@class WinPickerOpts
+---@class WinPickOpts
 ---@field position? string
 ---@field cancel_key? string
 ---@field letters? string[]
@@ -12,7 +12,7 @@ local M = {}
 ---@field padding? { x: number, y: number }
 
 -- Default options
----@type WinPickerOpts
+---@type WinPickOpts
 local defaults = {
   position = 'center', -- 'center', 'topleft', 'topright', 'bottomleft', 'bottomright', 'topcenter', 'bottomcenter'
   cancel_key = '<esc>', -- cancel key
@@ -86,7 +86,7 @@ local function show_letter(win, letter)
     style = 'minimal',
     border = border,
   })
-  vim.api.nvim_set_option_value('winhl', 'Normal:WinPickerLabel,FloatBorder:WinPickerLabelBorder', { win = float_win })
+  vim.api.nvim_set_option_value('winhl', 'Normal:WinPickLabel,FloatBorder:WinPickLabelBorder', { win = float_win })
   return float_win
 end
 
@@ -94,15 +94,15 @@ end
 function M.pick()
   if not M.opts then M.setup() end
   -- Set inverse Normal highlight for labels if not overridden
-  local existing = vim.api.nvim_get_hl(0, { name = 'WinPickerLabel' })
+  local existing = vim.api.nvim_get_hl(0, { name = 'WinPickLabel' })
   if not existing.fg then
     local normal_hl = vim.api.nvim_get_hl(0, { name = 'Normal' })
     local fg = normal_hl.fg
     local bg = normal_hl.bg
-    vim.api.nvim_set_hl(0, 'WinPickerLabel', { fg = bg, bg = fg, bold = true })
+    vim.api.nvim_set_hl(0, 'WinPickLabel', { fg = bg, bg = fg, bold = true })
   end
   -- Set border highlight to FloatBorder
-  vim.api.nvim_set_hl(0, 'WinPickerLabelBorder', { link = 'FloatBorder' })
+  vim.api.nvim_set_hl(0, 'WinPickLabelBorder', { link = 'FloatBorder' })
 
   vim.api.nvim_echo({{"-- Choose a window --", "ModeMsg"}}, false, {})
   local tabpage = vim.api.nvim_get_current_tabpage()
@@ -192,7 +192,7 @@ function M.pick()
 end
 
 -- Setup function
----@param opts WinPickerOpts?
+---@param opts WinPickOpts?
 ---@return nil
 function M.setup(opts)
    M.opts = vim.tbl_extend('force', defaults, opts or {})

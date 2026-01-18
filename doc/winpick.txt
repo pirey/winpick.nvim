@@ -1,44 +1,44 @@
-WINPICKER.NVIM                                                    *winpicker*
+WINPICK.NVIM                                                    *winpick*
 
 A Neovim plugin for quickly picking windows to focus by pressing letter labels displayed on them.
 
 ==============================================================================
-INSTALLATION                                          *winpicker-installation*
+INSTALLATION                                          *winpick-installation*
 
 Using lazy.nvim ~
 
     {
-      'pirey/winpicker.nvim',
+      'pirey/winpick.nvim',
       config = function()
-        require('winpicker').setup()
+        require('winpick').setup()
       end
     }
 
 Using vim.pack ~
 
-    vim.pack.add({ 'https://github.com/pirey/winpicker.nvim' })
+    vim.pack.add({ 'https://github.com/pirey/winpick.nvim' })
 
 ==============================================================================
-USAGE                                                      *winpicker-usage*
+USAGE                                                      *winpick-usage*
 
 Call the pick() function to start window picking: >
 
-    require('winpicker').pick()
+    require('winpick').pick()
 <
 
 You can set up a keymap for easy access: >
 
-    vim.keymap.set('n', '<c-w>p', require('winpicker').pick, { desc = 'Pick window' })
+    vim.keymap.set('n', '<c-w>p', require('winpick').pick, { desc = 'Pick window' })
 <
 
 When activated, letters will appear on each window. Press the corresponding letter to focus that window, or press the cancel key to exit.
 
 ==============================================================================
-CONFIGURATION                                       *winpicker-configuration*
+CONFIGURATION                                       *winpick-configuration*
 
 The plugin uses these default options, which you can override by passing options to the setup() function: >
 
-    require('winpicker').setup({
+    require('winpick').setup({
       position = 'center',
       cancel_key = '<esc>',
       letters = { 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l' },
@@ -50,39 +50,39 @@ The plugin uses these default options, which you can override by passing options
 <
 
 ==============================================================================
-OPTIONS                                                   *winpicker-options*
+OPTIONS                                                   *winpick-options*
 
-position                            *winpicker-position*
+position                            *winpick-position*
     Type: string
     Label position: center, topleft, topright, bottomleft, bottomright, topcenter, bottomcenter
     Default: center
 
-cancel_key                          *winpicker-cancel_key*
+cancel_key                          *winpick-cancel_key*
     Type: string
     Key to cancel window picking
     Default: <esc>
 
-letters                             *winpicker-letters*
+letters                             *winpick-letters*
     Type: table
     Letters for labels (extends automatically)
     Default: { 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l' }
 
-skip_buftypes                       *winpicker-skip_buftypes*
+skip_buftypes                       *winpick-skip_buftypes*
     Type: table
     Buffer types to skip
     Default: {}
 
-skip_filetypes                      *winpicker-skip_filetypes*
+skip_filetypes                      *winpick-skip_filetypes*
     Type: table
     File types to skip
     Default: {'opencode_footer'}
 
-border                              *winpicker-border*
+border                              *winpick-border*
     Type: string
     Border style ('auto' uses vim.o.winborder)
     Default: auto
 
-padding                             *winpicker-padding*
+padding                             *winpick-padding*
     Type: table
     Label padding (x: horizontal, y: vertical)
     Default: { x = 2, y = 0 }
