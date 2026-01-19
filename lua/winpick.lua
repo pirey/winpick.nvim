@@ -104,7 +104,9 @@ function M.pick()
   -- Set border highlight to FloatBorder
   vim.api.nvim_set_hl(0, 'WinPickLabelBorder', { link = 'FloatBorder' })
 
-  vim.api.nvim_echo({{"-- Choose a window --", "ModeMsg"}}, false, {})
+  if vim.o.cmdheight > 0 then
+    vim.api.nvim_echo({{"-- Choose a window --", "ModeMsg"}}, false, {})
+  end
   local tabpage = vim.api.nvim_get_current_tabpage()
   local wins = vim.api.nvim_tabpage_list_wins(tabpage)
   -- Filter windows (only normal windows with valid buffers)
